@@ -1,3 +1,9 @@
+/*
+author: Nicholas A. Hays
+date: 2018-05-15T08:02:37+00:00
+repo: https://github.com/nhays89/LargestSubSquare.git
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 /*
@@ -72,14 +78,29 @@ int main(int argc, char *argv[]) {
 		printf("\n");
 	}
 	printf("\n");
-
 	*/
-	
 	printf("%d", process(bool_arr, n, m));
 	free(bool_arr);		
 }
 
+/*
+Determines the maximum possible square in a bool matrix.
 
+	input process conversion:
+
+1 1 1 0 0 1         1 1 1 0 0 1
+1 1 1 1 0 1         1 2 2 1 0 1
+1 1 1 1 1 1   -->   1 2 3 2 1 1
+1 1 1 1 1 1   -->   1 2 3 3 2 2
+1 1 1 1 0 0         1 2 3 4 0 1
+0 1 1 1 1 1         0 1 2 3 1 1
+
+
+
+@param bool_arr - boolean matrix
+@param n - rows
+@param m - columns
+*/
 static int process(int * bool_arr, const int n, const int m) {
 	int * max_square_arr = malloc(sizeof(int) * n * m);
 	if(max_square_arr == NULL) {
@@ -109,6 +130,16 @@ static int process(int * bool_arr, const int n, const int m) {
 	free(max_square_arr);
 	return max_square;
 }
+
+
+/*
+
+Returns the smallest of three integers.
+
+@param left - left of current index
+@param left_down - left and down from current index
+@param down - down from the current index
+*/
 static int smallest(const int left, const int left_down, const int down) {
 	if(left < left_down) {
 		if(left < down) {
